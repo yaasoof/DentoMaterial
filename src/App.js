@@ -187,7 +187,8 @@ export default function App() {
           )}
         </div>
       )}
-<a
+		//زر الواتساب
+		<a
       href={`https://wa.me/${WHATSAPP_PHONE }?text=${encodeURIComponent('اريد الاستفسار عن')}`}
       className="whatsapp-float"
       target="_blank"
