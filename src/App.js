@@ -135,16 +135,23 @@ export default function App() {
   };
 
   const totalItemsCount = cart.reduce((sum, item) => sum + item.qty, 0);
-
+const contactUs=()=>{
+	    const url = `https://wa.me/${WHATSAPP_PHONE}?text=${'اريد استفسار'}`;
+    window.open(url, '_blank');
+}
   return (
     <div className="container" dir="rtl">
       {/* الهيدر العلوي */}
 	  <div className="sticky-header-wrapper">
       <header className="header">
         <h1 className="headerTitle">🦷 Dento Material</h1>
+		    <button className="cartButton wh" onClick={contactUs}>
+        تواصل عن طريق الواتساب
+        </button>
         <button className="cartButton" onClick={() => setIsCartVisible(true)}>
           🛒 السلة ({totalItemsCount})
         </button>
+		
       </header>
 
       {/* صندوق البحث */}
@@ -189,17 +196,7 @@ export default function App() {
           )}
         </div>
       )}
-		//زر الواتساب
-		<a
-      href={`https://wa.me/${WHATSAPP_PHONE }?text=${encodeURIComponent('اريد الاستفسار عن')}`}
-      className="whatsapp-float"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="تواصل معنا عبر واتساب"
-    >
-      {/* يمكنك استخدام أيقونة FontAwesome أو SVG أو صورة */}
-     <YourSvg/>
-    </a>
+
       {/* نافذة سلة الشراء (Modal) */}
       {isCartVisible && (
         <div className="modalOverlay" onClick={() => setIsCartVisible(false)}>
