@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Papa from 'papaparse';
 import './App.css'; // استيراد ملف الـ CSS الخاص بتنسيق الويب
-
+import toast, { Toaster } from 'react-hot-toast';
+import { ReactComponent as YourSvg } from './wh.svg';
 // رابط ملف الـ CSV
-const CSV_URL = `https://docs.google.com/spreadsheets/d/e/2PACX-1vTL8EefdUQBVJ6BlJP_hDlu3sz9aO68lDjRj83YP5_4ZN4xQnyvT8JvbP12azF56Sqvpnm1NAXv6Y63/pub?gid=2031140201&single=true&output=csv`;
+const CSV_URL ='https://docs.google.com/spreadsheets/d/e/2PACX-1vRtpueXiDAlpq_feLs57C1qlIEa8w8DuzuIFOJ8NvrOn3_MRYPY0bkeTKzArirdeOyrravqAwd9NW5v/pub?gid=1279445680&single=true&output=csv';
 
 export default function App() {
   const [products, setProducts] = useState([]);
@@ -41,16 +42,18 @@ export default function App() {
       const csvText = await response.text();
 
       Papa.parse(csvText, {
-        header: false,
+        header: true,
         skipEmptyLines: true,
         complete: (results) => {
+			console.log(results.data);
           const loadedProducts = results.data
+		  
             .map((row, index) => {
-              if (row[0] && row[1]) {
+             if (row.title || row.price) {
                 return {
                   id: String(index + 1),
-                  title: String(row[0]).trim(),
-                  price: String(row[1]).trim(),
+                  title: String(row.name ||'').trim(),
+                  price: String(row.price ||'').trim(),
                 };
               }
               return null;
@@ -76,13 +79,18 @@ export default function App() {
 
   // إضافة منتج للسلة
   const addToCart = (product) => {
+	  
     const existingIndex = cart.findIndex((item) => item.id === product.id);
     if (existingIndex > -1) {
+		toast.success('Successfully add!');
       const updatedCart = [...cart];
       updatedCart[existingIndex].qty += 1;
       setCart(updatedCart);
+	  toast.success(`تم زيادة كمية ${product.title} في السلة!`);
+	 
     } else {
       setCart([...cart, { ...product, qty: 1 }]);
+	  toast.success(`تمت إضافة المنتج  ${product.title} لسلة بنجاح!`);
     }
   };
 
@@ -105,6 +113,7 @@ export default function App() {
   const removeFromCart = (index) => {
     const updatedCart = cart.filter((_, i) => i !== index);
     setCart(updatedCart);
+	toast.error('تم حذف المنتح!');
   };
 
   const checkoutWhatsApp = () => {
@@ -120,6 +129,9 @@ export default function App() {
 
     const url = `https://wa.me/${WHATSAPP_PHONE}?text=${message}`;
     window.open(url, '_blank');
+	setCart([]);
+	toast.success('تم الارسال بنجاح ');
+	toast.success('تم افراغ السلة');
   };
 
   const totalItemsCount = cart.reduce((sum, item) => sum + item.qty, 0);
@@ -146,7 +158,7 @@ export default function App() {
           />
         </div>
       )}
-
+<Toaster/>
       {/* مؤشر التحميل أثناء جلب البيانات */}
       {loading ? (
         <div className="loadingContainer">
@@ -175,7 +187,16 @@ export default function App() {
           )}
         </div>
       )}
-
+<a
+      href={`https://wa.me/${WHATSAPP_PHONE }?text=${encodeURIComponent('اريد الاستفسار عن')}`}
+      className="whatsapp-float"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="تواصل معنا عبر واتساب"
+    >
+      {/* يمكنك استخدام أيقونة FontAwesome أو SVG أو صورة */}
+     <YourSvg/>
+    </a>
       {/* نافذة سلة الشراء (Modal) */}
       {isCartVisible && (
         <div className="modalOverlay" onClick={() => setIsCartVisible(false)}>
