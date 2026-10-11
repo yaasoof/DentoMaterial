@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/DentoMaterial/static/css/main.10fda4a8.css",
-    "main.js": "/DentoMaterial/static/js/main.80f61595.js",
+    "main.css": "/DentoMaterial/static/css/main.42214e57.css",
+    "main.js": "/DentoMaterial/static/js/main.8baaceb1.js",
     "static/js/453.6c8ed04d.chunk.js": "/DentoMaterial/static/js/453.6c8ed04d.chunk.js",
     "static/media/wh.svg": "/DentoMaterial/static/media/wh.f2883296e5f8c40374f487bfc522416c.svg",
     "index.html": "/DentoMaterial/index.html",
-    "main.10fda4a8.css.map": "/DentoMaterial/static/css/main.10fda4a8.css.map",
-    "main.80f61595.js.map": "/DentoMaterial/static/js/main.80f61595.js.map",
+    "main.42214e57.css.map": "/DentoMaterial/static/css/main.42214e57.css.map",
+    "main.8baaceb1.js.map": "/DentoMaterial/static/js/main.8baaceb1.js.map",
     "453.6c8ed04d.chunk.js.map": "/DentoMaterial/static/js/453.6c8ed04d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.10fda4a8.css",
-    "static/js/main.80f61595.js"
+    "static/css/main.42214e57.css",
+    "static/js/main.8baaceb1.js"
   ]
 }
