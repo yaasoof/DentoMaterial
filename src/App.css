@@ -1,4 +1,4 @@
-* {
+- {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -12,17 +12,6 @@
   flex-direction: column;
 }
 
-.header {
-  background-color: #008080;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
 
 .headerTitle {
   color: #fff;
@@ -41,24 +30,6 @@
   cursor: pointer;
 }
 
-.searchContainer {
- position: sticky;
-  top: 0; /* المسافة من الأعلى عندما يصل إليها */
-  z-index: 1000; /* لضمان ظهور العنصر فوق باقي العناصر أثناء التمرير */
-  background-color: #ffffff; /* مهم جداً: إضافة لون خلفية لكي لا تظهر النصوص تحته بداخلة */
-  padding: 15px;
-}
-
-.searchInput {
-  width: 100%;
-  background-color: #fff;
-  padding: 10px 15px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  font-size: 14px;
-  outline: none;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-}
 
 .loadingContainer {
   flex: 1;
@@ -86,11 +57,6 @@
   margin-top: 10px;
   font-size: 14px;
   color: #555;
-}
-
-.productList {
-  padding: 15px;
-  flex: 1;
 }
 
 .emptySearchText, .emptyText {
@@ -163,7 +129,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 2000;
 }
 
 .modalContent {
@@ -279,6 +245,7 @@
 .whatsappCheckoutButton:hover {
   background-color: #20ba5a;
 }
+
 .whatsapp-float {
   position: fixed;
   bottom: 25px;
@@ -303,4 +270,51 @@
   background-color: #20ba5a;
   transform: scale(1.1);
   color: #fff;
+}
+/* الحاوية الثابتة في أعلى الشاشة بالكامل */
+.sticky-header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.header {
+  background-color: #008080;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.searchContainer {
+  background-color: #ffffff;
+  padding: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.searchInput {
+  width: 100%;
+  background-color: #fff;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box; /* أهم خاصية لضمان عدم خروج الـ input عن حدود الشاشة من اليسار */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+/* أضف مساحة تعويضية لقائمة المنتجات حتى لا تختفي تحت الهيدر الثابت */
+.productList {
+  padding: 15px;
+  margin-top: 130px; /* مساحة تقريبية تعادل ارتفاع الهيدر وصندوق البحث معاً */
+  flex: 1;
 }

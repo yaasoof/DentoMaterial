@@ -139,6 +139,7 @@ export default function App() {
   return (
     <div className="container" dir="rtl">
       {/* الهيدر العلوي */}
+	  <div className="sticky-header-wrapper">
       <header className="header">
         <h1 className="headerTitle">🦷 Dento Material</h1>
         <button className="cartButton" onClick={() => setIsCartVisible(true)}>
@@ -158,6 +159,7 @@ export default function App() {
           />
         </div>
       )}
+	  </div>
 <Toaster/>
       {/* مؤشر التحميل أثناء جلب البيانات */}
       {loading ? (
